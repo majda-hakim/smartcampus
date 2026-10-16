@@ -10,4 +10,6 @@ class LoginService:
 
     def login(self, username, password):
         self.validate(username, password)
-        return self.users.get(username) == password
+        if username not in self.users:
+            raise ValueError("Utilisateur inconnu")
+        return self.users[username] == password

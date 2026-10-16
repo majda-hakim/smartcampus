@@ -1,1 +1,1 @@
-# SmartCampus
+# SmartCampus - Plateforme de gestion du campus

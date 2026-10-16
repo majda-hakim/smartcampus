@@ -1,1 +1,1 @@
-# SmartCampus
+# SmartCampus - Application ENSA Khouribga

@@ -13,8 +13,8 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
-    @GetMapping("/")
-    public String accueil() {
-        return "Bienvenue dans le TP DevOps - ENSA Khouribga !";
-    }
+   @GetMapping("/")
+public String accueil() {
+    return "Pipeline CI/CD Jenkins : build automatique réussi !";
+}   
 }

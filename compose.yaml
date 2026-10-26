@@ -1,0 +1,43 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: smartcampus-db
+    environment:
+      POSTGRES_DB: smartcampus
+      POSTGRES_USER: smart
+      POSTGRES_PASSWORD: smart123
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U smart -d smartcampus"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build: .
+    image: smartcampus:1.0
+    container_name: smartcampus-api
+    ports:
+      - "8081:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/smartcampus
+      SPRING_DATASOURCE_USERNAME: smart
+      SPRING_DATASOURCE_PASSWORD: smart123
+    volumes:
+      - smartcampus-data:/app/data
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/ || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+volumes:
+  pgdata:
+  smartcampus-data:
+    external: true

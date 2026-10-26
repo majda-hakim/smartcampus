@@ -1,0 +1,6 @@
+.git
+src
+target/classes
+target/maven-archiver
+target/maven-status
+target/*.original

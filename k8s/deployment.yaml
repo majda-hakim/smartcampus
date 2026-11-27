@@ -18,3 +18,8 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: smartcampus-config
+            - secretRef:
+                name: smartcampus-secret

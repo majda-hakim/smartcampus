@@ -37,3 +37,8 @@ spec:
             periodSeconds: 10
             timeoutSeconds: 3
             failureThreshold: 3
+          envFrom:
+            - configMapRef:
+                name: smartcampus-config
+            - secretRef:
+                name: smartcampus-secret
